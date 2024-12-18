@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess the Number Game</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 300px;
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #007bff;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    #score {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #result {
+      font-weight: bold;
+      margin-top: 15px;
+      color: #dc3545; /* Red color for wrong guess */
+    }
+
+    #result.right {
+      color: #28a745; /* Green color for correct guess */
+    }
+
+    #result.wrong {
+      color: #dc3545; /* Red color for incorrect guess */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Guess the Number</h1>
+    <input id="guessnumber" type="number" placeholder="Enter a number (1-10)">
+    <button onclick="check()">Check</button>
+    <p id="result">You are right/wrong</p>
+    <p id="score">Score: 10</p>
+  </div>
+
+  <script>
+    var guessnumber = document.getElementById("guessnumber");
+    var result = document.getElementById("result");
+    var score = document.getElementById("score");
+    var randomNumber = Math.floor(Math.random() * 10) + 1;
+    var totalscore = 10;
+
+    function check() {
+      var enterednumber = Number(guessnumber.value);
+      if (randomNumber === enterednumber) {
+        result.textContent = "You are right!";
+        result.classList.remove("wrong");
+        result.classList.add("right");
+        alert("YOU WON...");
+      } else {
+        totalscore -= 1;
+        score.textContent = "Score: " + totalscore;
+        result.textContent = "You are wrong!";
+        result.classList.remove("right");
+        result.classList.add("wrong");
+      }
+    }
+  </script>
+
+</body>
+</html>
